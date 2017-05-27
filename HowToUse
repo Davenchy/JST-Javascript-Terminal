@@ -27,3 +27,27 @@ Import Terminal.css
     //  'onKeyDown' is Terminal Method to check keys status.
     //  'terminal' is the variable name that declared above.
     $(document).keydown(function(event) { terminal.onKeyDown(event); });
+
+/*  Some Terminal Methods   */
+
+    Terminal.output(message, color); // To print message
+    
+    Terminal.outputType.info    // blue color
+    Terminal.outputType.warn    // orange color
+    Terminal.outputType.error   // red color
+    Terminal.outputType.message // green color
+
+    Terminal.framework.clear()  //  Clear all elements in Terminal
+    Terminal.create(html code)  //  Print html code
+    Terminal.eline()  //  [empity line]     The same as <br>
+    Terminal.hline()  //  [horizontal line] The same as <hr>
+
+/*  Create New Method   */
+
+    Terminal.framework["MethodName"] = function(input) {
+        this.parent.output("Hello World!", this.parent.outputType.message);
+    }
+
+    //  You can call the method from the terminal or js code
+    //  e.g. 'terminal.MethodName("");'
+    //  this.parent [Terminal Object]

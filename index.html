@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>JST - Javascript Terminal</title>
+        <!--Important : Import jquery.js file-->
         <script src="jquery.js"></script>
         <script src="Terminal.js"></script>
         <link href="Terminal.css" rel="stylesheet">
@@ -15,4 +16,37 @@
     terminal.setView("#terminal1");
     terminal.drawInputBox();
     $(document).keydown(function(event) { terminal.onKeyDown(event); });
+
+    //  Some Methods
+    // Terminal.output(message, color);
+    // Terminal.outputType.info     (blue)
+    // Terminal.outputType.message  (green)
+    // Terminal.outputType.warn     (orange)
+    // Terminal.outputType.error    (red)
+    terminal.output("Normal Line", terminal.outputType.message);
+    terminal.output("Information Line", terminal.outputType.info);
+    terminal.output("Warnning Line", terminal.outputType.warn);
+    terminal.output("Error Line", terminal.outputType.error);
+
+
+
+    //  Some Help
+    terminal.eline();   //  the same <br> tag
+    terminal.hline();   //  the same <hr> tag
+    terminal.output("try 'echo' command, with space and some text. e.g. 'echo hello world!'", terminal.outputType.error);
+    terminal.output("try 'AppendInput' command", terminal.outputType.error);
+    terminal.output("try 'clear' command", terminal.outputType.error);
+    terminal.output("try 'about' command", terminal.outputType.error);
+    terminal.hline();
+    terminal.eline();
+
+    //  Create New Method (Append Input)
+    terminal.framework["AppendInput"] = function(input) {
+        terminal.create("<input type='button' value='press me!' onclick='ShowAlert();'>");
+    }
+    function ShowAlert() {
+        terminal.output("Alert!", terminal.outputType.warn);
+    }
+
+
 </script>

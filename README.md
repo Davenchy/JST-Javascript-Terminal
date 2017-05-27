@@ -1,1 +1,0 @@
-# JST Javascript Terminal
