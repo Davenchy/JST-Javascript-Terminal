@@ -1,0 +1,29 @@
+JST (Javascript Terminal)
+Version : 1.0.0.0
+Created By Davenchy
+Jquery is needed!
+
+/*  Import This Files First In The HTML File    */
+
+Import jquery.js (JQUERY framework)
+Import Terminal.js
+Import Terminal.css
+
+/*  HTML Codes  */
+
+    <div id="terminal1" class="terminal"></div>
+
+/*  Javascript Codes    */
+
+    //  Create new variable to control the Terminal
+    var terminal = new Terminal();
+
+    //  'setView(id)' method to select the Terminal element
+    terminal.setView("#terminal1"); //  'terminal1' is the ID of the Terminal element.
+
+    //  Append (input with type 'text') to the selected Terminal element.
+    terminal.drawInputBox();
+
+    //  'onKeyDown' is Terminal Method to check keys status.
+    //  'terminal' is the variable name that declared above.
+    $(document).keydown(function(event) { terminal.onKeyDown(event); });

@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>JST - Javascript Terminal</title>
+        <script src="jquery.js"></script>
+        <script src="Terminal.js"></script>
+        <link href="Terminal.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="terminal1" class="terminal"></div>
+    </body>
+</html>
+
+<script>
+    var terminal = new Terminal();
+    terminal.setView("#terminal1");
+    terminal.drawInputBox();
+    $(document).keydown(function(event) { terminal.onKeyDown(event); });
+</script>
