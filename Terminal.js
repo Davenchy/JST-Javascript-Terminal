@@ -106,11 +106,13 @@ Terminal.prototype.onKeyDown = function(e) {
             this.input();
         }
         if (this.keys[e.keyCode] === "up") {
+            e.preventDefault();
             if (this.historyIndex <= 0) { this.historyIndex++; }
             this.historyIndex--;
             this.inputBox.val(this.history[this.historyIndex]);
         }
         if (this.keys[e.keyCode] === "down") {
+            e.preventDefault();
             if (this.historyIndex >= this.history.length-1) { this.historyIndex--; }
             this.historyIndex++;
             this.inputBox.val(this.history[this.historyIndex]);
