@@ -22,7 +22,7 @@ function Terminal() {
 
         //  Clear All Terminal Elements
         clear:function(input) {
-            while(this.parent.view.children().length != 0) {
+            while(this.parent.view.children().length !== 0) {
                 for(var i = 0; i < this.parent.view.children().length; i++) {
                     this.parent.view.children()[i].remove();
                 }
@@ -121,7 +121,7 @@ Terminal.prototype.onKeyDown = function(e) {
 //  On InputBox change event method
 Terminal.prototype.input = function() {
     var string = this.inputBox.val();
-    if (string != "") { 
+    if (string !== "") { 
         for(var i = 0; i < this.history.length; i++) {
             if (this.history[i] === string) {
                 this.history.splice(i, 1);
