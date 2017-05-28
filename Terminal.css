@@ -47,23 +47,3 @@
     position: absolute;
     z-index: 100;
 }
-
-.X {
-    background-color: red;
-    width: 50px;
-    height: 50px;
-    display: block;
-    position: absolute;
-    z-index: 10;
-}
-
-.X:after {
-    background-color: green;
-    width: 50px;
-    left: 100px;
-    height: 50px;
-    display: block;
-    content: "";
-    position: relative;
-    z-index: 10;
-}
