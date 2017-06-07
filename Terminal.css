@@ -1,49 +1,26 @@
 .Terminal {
+    background-color: #333;
     position: absolute;
     top: 0;
     left: 0;
-    bottom: 0;
     right: 0;
-    color: #2196f3;
-    padding: 20px 30px;
-    background-color: #303030;
-    line-height: 3px;
-    font-size: 15px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    cursor: text;
-    overflow: auto;
-    border-bottom: 30px solid #303030;
-    font-weight: 800
+    bottom: 0;
+    padding: 10px;
+    overflow: hidden;
 }
 
 .Terminal .Line {
-    font-weight: 500;
-    width: 100%;
-    color: #2196f3;
-    display: block;
-    margin-right: 15px;
-    line-height: 20px;
+    margin: 0;
+    color: #eee;
+    font-size: 18px;
 }
 
 .Terminal .InputBox {
     border: none;
-    background-color: transparent;
+    margin-top: 10px;
+    font-size: 20px;
     width: 100%;
-    color: #3f51b5;
-    font-size: 17px;
-    font-weight: 600;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     outline: none;
-    margin-bottom: 10px;
-}
-
-.Terminal .InputBox:after, .Terminal .InputBox:before {
-    background-color: green;
-    width: 50px;
-    left: 100px;
-    height: 50px;
-    display: block;
-    content: "sda";
-    position: absolute;
-    z-index: 100;
+    background-color: transparent;
+    color: #eee;
 }

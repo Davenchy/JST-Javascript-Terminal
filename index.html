@@ -9,46 +9,53 @@
         <link href="Terminal.css" rel="stylesheet">
     </head>
     <body>
-        <div id="terminal1" class="terminal"></div>
+        <div class="Terminal"></div>
     </body>
 </html>
 
 <script>
-    var terminal = new Terminal();
-    terminal.setView("#terminal1");
-    terminal.drawInputBox();
-    $(document).keydown(function(event) { terminal.onKeyDown(event); });
 
-    //  Some Methods
-    // Terminal.output(message, color);
-    // Terminal.outputType.info     (blue)
-    // Terminal.outputType.message  (green)
-    // Terminal.outputType.warn     (orange)
-    // Terminal.outputType.error    (red)
-    terminal.output("Normal Line", terminal.outputType.message);
-    terminal.output("Information Line", terminal.outputType.info);
-    terminal.output("Warnning Line", terminal.outputType.warn);
-    terminal.output("Error Line", terminal.outputType.error);
+    //  Create Terminal Object (".Terminal" is the selector as css selectors)
+    var terminal = new Terminal(".Terminal");
+
+    //  Call OnKeyDown Method
+   $(document).keydown(function(event) { terminal.OnKeyDown(event); });
+    
+
+    //  Intro.
+    //  Terminal.Create.ELine(style);
+    //  Terminal.Create.HLine(style);
+    terminal.Create.ELine();   //  Empity Line
+    terminal.Create.HLine();   //  Horizontal Line, Like <hr> tag.
+
+    //  Terminal.Create.Line(message, color, style);
+
+    terminal.Create.Line("Try 'MyMethod' The Created Method", terminal.color.Green, "font-size: 20px; font-weight: 700;");
+    terminal.Create.Line("Try 'about', To show some information", terminal.color.Orange, "font-size: 20px; font-weight: 700;");
+    terminal.Create.Line("Try 'Documentation', For Help!", terminal.color.Red, "font-size: 20px; font-weight: 700;");
+    terminal.Create.Line("Try 'clear', To clear the terminal screen", terminal.color.LightBlue, "font-size: 20px; font-weight: 700;");
 
 
-
-    //  Some Help
-    terminal.eline();   //  the same <br> tag
-    terminal.hline();   //  the same <hr> tag
-    terminal.output("try 'echo' command, with space and some text. e.g. 'echo hello world!'", terminal.outputType.error);
-    terminal.output("try 'AppendInput' command", terminal.outputType.error);
-    terminal.output("try 'about' command", terminal.outputType.error);
-    terminal.output("try 'clear' command", terminal.outputType.error);
-    terminal.hline();
-    terminal.eline();
+    terminal.Create.HLine();   //  Horizontal Line, Like <hr> tag.
+    terminal.Create.ELine();   //  Empity Line
 
     //  Create New Method (Append Input)
-    terminal.framework["AppendInput"] = function(input) {
-        terminal.create("<input type='button' value='press me!' onclick='ShowAlert();'>");
+    //  Add New Method To The Framework Array
+    terminal.framework["MyMethod"] = function(input) {
+
+        //  Terminal.Draw(HTML Code);   To Append HTML Element To The Terminal
+        terminal.Draw("<input type='button' value='press me!' onclick='ShowAlert();'>");
+
     }
-    function ShowAlert() {
-        terminal.output("Alert!", terminal.outputType.warn);
+    function ShowAlert() { 
+        terminal.Create.Line("Alert!", terminal.color.Orange);
     }
 
 
+    //  Documentation Command!
+    terminal.framework["Documentation"] = function(input) {
+        terminal.Draw("<a href='Documentation.html' style='font-size: 30px; font-weight: 900; color: #4CAF50;'>Go To The Documentation</a>");
+    }
+
+    // For more check 'Documentation.html' File
 </script>

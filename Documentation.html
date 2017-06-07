@@ -1,0 +1,353 @@
+<html>
+    <head>
+        <title>JST - Documentation</title>
+        <style>
+            body {
+                background-color: #333;
+                color: #eee;
+                cursor: default;
+                padding: 10px;
+            }
+            a, p {
+                color: #eee;
+                font-weight: bold;
+                font-size: 20px;
+                margin: 0;
+            }
+            .Code {
+                display: block;
+                width: 100%;
+                height: 200px;
+                border: none;
+                resize: none;
+                background-color: transparent;
+                outline: none;
+                cursor: text;
+                font-size: 19px;
+                color: #03A9F4;
+                font-weight: bold;
+            }
+            p { cursor: default; }
+            .Method { color: #F44336; }
+            .Object { color: #2196F3; }
+            .Var { color: #FF9800; }
+            .Array { color: #4CAF50; }
+            .Good { color: #8BC34A; }
+            .Bad { color: #E91E63; }
+        </style>
+    </head>
+    <body>
+        <h1>Javascript Terminal (JST) - Documentation</h1>
+        <hr>
+        Javascript Terminal (JST)<br>
+        Version: 2.0<br>
+        Created By Davenchy
+        <hr>
+            <p class="Method">Methods</p>
+            <p class="Object">Objects</p>
+            <p class="Array">Arrays</p>
+            <p class="Var">Variables</p>
+            <p class="Good">[Very Important]</p>
+            <p class="Bad">[Not Needed]</p>
+        <hr>
+        <ul>
+            <li><a href="#Terminal"><span class="Object">Terminal(selector)</span> (The Terminal Object, selector is the ID or the class name as jquery) <span class="Good">[Very Important]</span></a>
+                <ul>
+                    <li><p><span class="Object">view</span> (Terminal Element) <span class="Bad">[Not Needed]</span></p></li>
+                    <li><p><span class="Object">inputBox</span> (InputBox Element) <span class="Bad">[Not Needed]</span></p></li>
+                    <li><p><span class="Object">keys</span> (Contains ID Of Each Needed Keyboard Key) <span class="Bad">[Not Needed]</span></p></li>
+                    <li><a href="#Colors"><span class="Object">color</span> (Group Of Colors) <span class="Good">[Very Important]</span></a></li>
+                    <li><p><span class="Array">history</span> (Array Contains Each Input Keyword) <span class="Bad">[Not Needed]</span></p></li>
+                    <li><p><span class="Var">historyIndex</span> (The Current History Keyboard Index) <span class="Bad">[Not Needed]</span></p></li>
+                    <li><a href="#Framework"><span class="Object">framework</span> (Array Of Methods That Can Call As Commands From The Terminal) <span class="Good">[Very Important]</span></a></li>
+                    <li><a href="#Create"><span class="Object">Create</span> (Object Contains Methods To Draw Elements) <span class="Good">[Very Important]</span></a>
+                        <ul>
+                            <li><p><span class="Object">parent</span> (The Parent Terminal) </p></li>
+                            <li><a href="#Create"><span class="Method">Line(text, color, style)</span> (Print New Terminal Line) <span class="Good">[Very Important]</span></a></li>
+                            <li><a href="#Create"><span class="Method">HLine(style)</span> (Print New Terminal Horizontal Line) <span class="Good">[Very Important]</span></a></li>
+                            <li><a href="#Create"><span class="Method">ELine(style)</span> (Print New Terminal Empity Line) <span class="Good">[Very Important]</span></a></li>
+                        </ul>
+                    </li>
+                    <li><p><span class="Method">SetInputBox()</span> (Set InputBox Element)  <span class="Bad">[Not Needed]</span></p></li>
+                    <li><p><span class="Method">RefreshInputBox()</span> (Update InpotBox Position) <span class="Bad">[Not Needed]</span></p></li>
+                    <li><a href="#Draw"><span class="Method">Draw(element)</span> (Method To Draw Elements) <span class="Good">[Very Important]</span></a></li>
+                    <li><a href="#OnKeyDown"><span class="Method">OnKeyDown(event)</span> (Method Called To Check Keys Status) <span class="Good">[Very Important]</span></a></li>
+                    <li><p><span class="Method">OnInputEvent()</span> (Method Called To Check Entered Keywords From The Terminal) <span class="Bad">[Not Needed]</span></p></li>
+                    <li><p><span class="Method">Compilor(code)</span> (Method Called To Compile Codes That Exists In The Framework) <span class="Bad">[Not Needed]</span></p></li>
+                    <li><a href="#GetArgs"><span class="Method">GetArgs(args, splitter)</span> (Method Called To Split Entered Data, [To Split Input In Created Commands and Framework Methods]) <span class="Good">[Very Important]</span></a></li>
+                </ul>
+            </li>
+            <li><a href="#Example"><span class="Object">Example</span> (Very Simple Example)</a>
+        </ul>
+        <hr>
+        <h1 id="Terminal" class="Object">Terminal (selector)</h1>
+        <p>
+            The Terminal Object<br>
+            e.g.:-<br>
+            HTML Code:<br>
+            <textarea class="Code" style="height: 50px;" readonly>
+    <div class="Terminal"></div>
+            </textarea>
+            Javascript Code:
+            <textarea class="Code" style="height: 120px;" readonly>
+
+    <script>
+        var terminal = new Terminal(".Terminal");
+    </script>
+            </textarea>
+            </p>
+        <hr>
+        
+        <h1 id="Colors" class="Object">color</h1>
+        <p>
+            Terminal.color{}<br><br>
+            <h2>Colors:</h2>
+            <p style="color: #F44336;">Terminal.color.Red</p>
+            <p style="color: #E91E63;">Terminal.color.Pink</p>
+            <p style="color: #9C27B0;">Terminal.color.Purple</p>
+            <p style="color: #3F51B5;">Terminal.color.Indigo</p>
+            <p style="color: #2196F3;">Terminal.color.Blue</p>
+            <p style="color: #03A9F4;">Terminal.color.LightBlue</p>
+            <p style="color: #009688;">Terminal.color.Teal</p>
+            <p style="color: #4CAF50;">Terminal.color.Green</p>
+            <p style="color: #8BC34A;">Terminal.color.LightGreen</p>
+            <p style="color: #CDDC39;">Terminal.color.Lime</p>
+            <p style="color: #FFEB3B;">Terminal.color.Yellow</p>
+            <p style="color: #FF9800;">Terminal.color.Orange</p>
+            <p style="color: #E0E0E0;">Terminal.color.White</p>
+        </p> 
+        <hr>
+
+        <h1 id="Framework" class="Object">framework</h1>
+        <p>
+            Terminal.framework{}<br><br>
+            Methods And Commands Can Be Called From The Terminal.
+            <h2>Frameworks:</h2>
+            <p class="Object">Terminal.framework.parent (The Parent Terminal)</p>
+            <p class="Method">Terminal.framework.clear(input) (Clear All Theinput = undefined) (input = undefined)</p>
+            <p class="Method">Terminal.framework.about(input) (Print Some Information About Terminal Like Version) (input = undefined)</p>
+            <br>
+            <h2>Create New Command</h2>
+            <textarea class="Code" style="height: 150px;" readonly>
+                var terminal = new Terminal(".Terminal");
+
+                terminal.framework["MyMethodName"] = function(input) {
+                    //  Do Something....
+                };
+            </textarea>
+            
+        </p> 
+        <hr>
+
+        <h1 id="Create" class="Object">Create</h1>
+        <p>
+            Terminal.Create{}<br><br>
+            Object Contains Methods To Create And Draw Elements In The Terminal.
+            <h2>Methods:</h2>
+            <p class="Object">Terminal.Create.parent (The Parent Terminal)</p>
+            <p class="Method">Terminal.Create.Line(text, color, style) (Print New Line To The Terminal)</p>
+            <p class="Method">Terminal.Create.ELine(style) (Print New Empity Line To The Terminal)</p>
+            <p class="Method">Terminal.Create.HLine(style) (Print New Horizontal Line To The Terminal, The Same As [hr] Tag)</p>
+            <br>
+            <p>text: Is the message or the string to display.</p>
+            <p>color: Is css color of the text.</p>
+            <p>style: Is css code to style the text.</p>
+
+            <h2>Example</h2>
+            <textarea class="Code" style="height: 300px;" readonly>
+                var terminal = new Terminal(".Terminal");
+
+                terminal.Create.HLine();
+                terminal.Create.Line("Hello World!");
+                terminal.Create.ELine();
+                terminal.Create.Line("Hello World!", terminal.color.Green);
+                terminal.Create.ELine();
+                terminal.Create.Line("Hello World!", "#E91E63", "font-size: 25px; font-weight: bold;");
+                terminal.Create.HLine();
+
+                // Default color Is White.
+                // Default style Is Empity String.
+            </textarea>
+            
+        </p>
+        <hr>
+
+        <h1 id="Draw" class="Method">Draw (code)</h1>
+        <p>
+            Terminal.Draw(code)<br><br>
+            Method To Append Code To The Terminal
+            <br>
+            <p>code: Is HTML Code.</p>
+            <h2>Example</h2>
+            <textarea class="Code" style="height: 150px;" readonly>
+                var terminal = new Terminal(".Terminal");
+
+                terminal.Draw("<hr>");
+                terminal.Draw("<input type='button' value='PressMe!' onclick="alert('Hello World!');">");
+                terminal.Draw("<hr>");
+            </textarea>
+            
+        </p>
+        <hr>
+
+        <h1 id="OnKeyDown" class="Method">OnKeyDown (event)</h1>
+        <p>
+            Terminal.OnKeyDown(event)<br><br>
+            Method To Check Keys Status. <br><h1 style="color: #CDDC39;">Important Method!</h1>
+            <h2>Example</h2>
+            <textarea class="Code" style="height: 170px;" readonly>
+                var terminal = new Terminal(".Terminal");
+
+                $(document).keydown( CallOnKeyDownEvent(event) );
+                function CallOnKeyDownEvent(event) {
+                    terminal.OnKeyDown(event);
+                }
+            </textarea>
+        </p>
+        <hr>
+
+        <h1 id="GetArgs" class="Method">GetArgs (args, splitter)</h1>
+        <p>
+            Terminal.GetArgs(args, splitter)<br><br>
+            Method To split string. <br>
+            <p>args : Is string contains e.g. "Red;Yellow;Green"</p>
+            <p>splitter : Is string e.g. ";"</p>
+            <h2>Example</h2>
+            <textarea class="Code" style="height: 210px;" readonly>
+                var terminal = new Terminal(".Terminal");
+
+                var colors = "Red,Green,Orange";
+                var colorsArray = terminal.GetArgs(colors, ",");
+
+                for(var i = 0; i < colorsArray.Length; i++) {
+                    terminal.Create.Line("Hello World!", terminal.color[ colorsArray[i] ]);
+                }
+            </textarea>
+        </p>
+        <hr>
+
+        <h1 id="Example" class="Object">Example</h1>
+        <p>
+            This is very simple example to use JST<br><br>
+
+            <h2>You Will Learn</h2>
+            <p>How To Create Terminal Object</p>
+            <p>How To Call OnKeyDown Event</p>
+            <p>Create Simple Framework Command Method (Calc)</p>
+            <p>How To Use GetArgs In Framework Commands Methods</p>
+            <br><br><br><br>
+            <h2>Create div Tag in html page</h2>
+            <textarea class="Code" style="height: 50px;" readonly>
+                <div class="Terminal"></div>
+            </textarea>
+
+            <h2>Create Terminal Object In Javascript</h2>
+            <textarea class="Code" style="height: 100px;" readonly>
+                <script>
+                    var terminal = new Terminal(".Terminal");
+                </script>
+            </textarea>
+
+            <h2>Call OnKeyDown Event Method</h2>
+            <textarea class="Code" style="height: 150px;" readonly>
+                <script>
+                    
+                    $(document).keydown(function(event) { terminal.OnKeyDown(event); });
+
+                </script>
+            </textarea>
+
+            <h2>Call OnKeyDown Event Method And How To Use GetArgs Method</h2>
+            <textarea class="Code" style="height: 750px;" readonly>
+                <script>
+                    
+                    terminal.framework["Calc"] = function(input) {
+                        var inputs = terminal.GetArgs(input, " "); // Split The Args.
+                        var a = parseInt(inputs[0], 0); //   First Number
+                        var b = parseInt(inputs[2], 0); //   Second Number
+                        var o = inputs[1]; //   Operator
+                        var r = 0;         //   Result
+                        var error = false; //   Check If Error
+                        
+                        if (o == "+") { r = a + b; } // Add
+                        else if (o == "-") { r = a - b; }   // Sub
+                        else if (o == "*") { r = a * b; }   // Multi
+                        else if (o == "/") {    // Devition
+                            if (b != 0) {
+                                r = a / b; 
+                            } 
+                            else { 
+                                r = "Math Error!";
+                                error = true;
+                            }
+                        }
+                        else { r = "Wrong Operator '" + o + "'!"; error = true; }
+                        
+                        if (error) {
+                            terminal.Create(r, terminal.color.Red);
+                        } else {
+                            terminal.Create("The Result is " + r, terminal.color.Green);
+                        }
+                    }
+
+                </script>
+            </textarea>
+
+            <h3>Done!</h3>
+            <h2>Now The Full Code</h2>
+
+            <textarea class="Code" style="height: 1100px;" readonly>
+
+                <div class="Terminal"></div>
+
+
+                <script>
+
+                    var terminal = new Terminal(".Terminal");
+
+
+
+                    $(document).keydown(function(event) { terminal.OnKeyDown(event); });
+
+
+
+                    terminal.framework["Calc"] = function(input) {
+                        var inputs = terminal.GetArgs(input, " "); // Split The Args.
+                        var a = parseInt(inputs[0], 0); //   First Number
+                        var b = parseInt(inputs[2], 0); //   Second Number
+                        var o = inputs[1]; //   Operator
+                        var r = 0;         //   Result
+                        var error = false; //   Check If Error
+                        
+                        if (o == "+") { r = a + b; } // Add
+                        else if (o == "-") { r = a - b; }   // Sub
+                        else if (o == "*") { r = a * b; }   // Multi
+                        else if (o == "/") {    // Devition
+                            if (b != 0) {
+                                r = a / b; 
+                            } 
+                            else { 
+                                r = "Math Error!";
+                                error = true;
+                            }
+                        }
+                        else { r = "Wrong Operator '" + o + "'!"; error = true; }
+                        
+                        if (error) {
+                            terminal.Create(r, terminal.color.Red);
+                        } else {
+                            terminal.Create("The Result is " + r, terminal.color.Green);
+                        }
+                    }
+
+                </script>
+
+            </textarea>
+
+        </p>
+
+        <hr>
+        <h1>Thank You!</h1>
+        <br>
+    </body>
+</html>
