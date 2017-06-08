@@ -268,7 +268,7 @@
                         var o = inputs[1]; //   Operator
                         var r = 0;         //   Result
                         var error = false; //   Check If Error
-                        
+
                         if (o == "+") { r = a + b; } // Add
                         else if (o == "-") { r = a - b; }   // Sub
                         else if (o == "*") { r = a * b; }   // Multi
@@ -281,12 +281,13 @@
                                 error = true;
                             }
                         }
+                        else if (o == undefined) { r = "Calc Command Need 3 Ars, e.g. Calc 5 + 3"; error = true; }
                         else { r = "Wrong Operator '" + o + "'!"; error = true; }
                         
                         if (error) {
-                            terminal.Create(r, terminal.color.Red);
+                            terminal.Create.Line(r, terminal.color.Red);
                         } else {
-                            terminal.Create("The Result is " + r, terminal.color.Green);
+                            terminal.Create.Line("The Result is " + r, terminal.color.Green);
                         }
                     }
 
@@ -331,12 +332,13 @@
                                 error = true;
                             }
                         }
+                        else if (o == undefined) { r = "Calc Command Need 3 Ars, e.g. Calc 5 + 3"; error = true; }
                         else { r = "Wrong Operator '" + o + "'!"; error = true; }
                         
                         if (error) {
-                            terminal.Create(r, terminal.color.Red);
+                            terminal.Create.Line(r, terminal.color.Red);
                         } else {
-                            terminal.Create("The Result is " + r, terminal.color.Green);
+                            terminal.Create.Line("The Result is " + r, terminal.color.Green);
                         }
                     }
 
