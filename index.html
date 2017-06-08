@@ -1,43 +1,34 @@
 <html>
     <head>
         <title>JST - Javascript Terminal</title>
-        <!--Important : Import jquery.js file-->
-        <!--<script src="jquery.js"></script>-->
-        <!--Online jquery URL-->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="Terminal.js"></script>
         <link href="Terminal.css" rel="stylesheet">
     </head>
     <body>
-        <div class="Terminal"></div>
+        <div class="Terminal" id="Terminal1">
     </body>
 </html>
 
 <script>
 
-    //  Create Terminal Object (".Terminal" is the selector as css selectors)
-    var terminal = new Terminal(".Terminal");
+    //  Create Terminal Object ("Terminal1" is the ID)
+    var terminal = new Terminal("Terminal1");
 
-    //  Call OnKeyDown Method
-   $(document).keydown(function(event) { terminal.OnKeyDown(event); });
-    
+    //  Terminal.create.ELine(style);
+    //  Terminal.create.HLine(style);
+    terminal.create.ELine();   //  Empity Line
+    terminal.create.HLine();   //  Horizontal Line, Like <hr> tag.
 
-    //  Intro.
-    //  Terminal.Create.ELine(style);
-    //  Terminal.Create.HLine(style);
-    terminal.Create.ELine();   //  Empity Line
-    terminal.Create.HLine();   //  Horizontal Line, Like <hr> tag.
+    //  Terminal.create.Line(message, color, style);
 
-    //  Terminal.Create.Line(message, color, style);
-
-    terminal.Create.Line("Try 'MyMethod' The Created Method", terminal.color.Green, "font-size: 20px; font-weight: 700;");
-    terminal.Create.Line("Try 'about', To show some information", terminal.color.Orange, "font-size: 20px; font-weight: 700;");
-    terminal.Create.Line("Try 'Documentation', For Help!", terminal.color.Red, "font-size: 20px; font-weight: 700;");
-    terminal.Create.Line("Try 'clear', To clear the terminal screen", terminal.color.LightBlue, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try 'MyMethod' The Created Method", terminal.color.Green, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try 'about', To show some information", terminal.color.Orange, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try 'Documentation', For Help!", terminal.color.Red, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try 'clear', To clear the terminal screen", terminal.color.LightBlue, "font-size: 20px; font-weight: 700;");
 
 
-    terminal.Create.HLine();   //  Horizontal Line, Like <hr> tag.
-    terminal.Create.ELine();   //  Empity Line
+    terminal.create.HLine();   //  Horizontal Line, Like <hr> tag.
+    terminal.create.ELine();   //  Empity Line
 
     //  Create New Method (Append Input)
     //  Add New Method To The Framework Array
@@ -48,7 +39,7 @@
 
     }
     function ShowAlert() { 
-        terminal.Create.Line("Alert!", terminal.color.Orange);
+        terminal.create.Line("Alert!", terminal.color.Orange);
     }
 
 

@@ -1,19 +1,17 @@
 /**
  * JST (Javascript Terminal)
- * Version 2.0
+ * Version 3.0
  * Created By Davenchy
  * Jquery is needed!
  */
 
 //  Terminal Object
-function Terminal(selector) {
-    try { $("<div>Check Jquery</div>"); } catch (e) { alert("jquery.js is missing"); }
+function Terminal(id) {
     
     //  Init
-    this.view = $(selector);
+    this.view = document.getElementById(id);
     this.inputBox;
-    this.SetInputBox();
-    this.RefreshInputBox();
+    this.Init();
 
     //  Input Keys
     this.keys = { 13:"enter", 116:"f5", 123:"f12", 38:"up", 40:"down" };
@@ -36,13 +34,13 @@ function Terminal(selector) {
     };
 
     //  Create And Draw Objects Method
-    this.Create = {
-        parent: this,
-        Line: function(text="", color = this.parent.color.Blue, style="") { 
-            return this.parent.Draw("<p class='Line' style='color: " + color + "; " + style + "'>" + text + "</p>");
+    this.create = {
+        terminal: this,
+        Line: function(text="", color = this.terminal.color.Blue, style="") { 
+            return this.terminal.Draw("<p class='Line' style='color: " + color + "; " + style + "'>" + text + "</p>");
         },
-        HLine: function(style="") { return this.parent.Draw("<hr style='" + style + "'>"); },
-        ELine: function(style="") { return this.parent.Draw("<br><p class='Line' style='" + style + "'></p>"); }
+        HLine: function(style="") { return this.terminal.Draw("<hr style='" + style + "'>"); },
+        ELine: function(style="") { return this.terminal.Draw("<br><p class='Line' style='" + style + "'></p>"); }
     };
         
     //  Objects And Vars
@@ -51,76 +49,97 @@ function Terminal(selector) {
 
     //  Framework (Some functions can call from the terminal)
     this.framework = {
-        parent:this,
-        clear:function(input) {
-            while(this.parent.view.children().length !== 0) {
-                for(var i = 0; i < this.parent.view.children().length; i++) {
-                    this.parent.view.children()[i].remove();
-                }
+        terminal:this,
+        clear:function(extra) {
+
+            var children = terminal.view.children;
+
+            while(children.length > 0) {
+                terminal.view.removeChild(children[0]);
             }
-            this.parent.SetInputBox();
-            this.parent.RefreshInputBox();
+            
+            this.terminal.DrawInputBox();
         },
-        about:function(input) {
-            this.parent.Create.ELine();
-            this.parent.Create.HLine();
-            this.parent.Create.Line("Javascript Terminal", this.parent.color.Green, "font-weight: 700;");
-            this.parent.Create.Line("Version 2.0", this.parent.color.Green, "font-weight: 700;");
-            this.parent.Create.Line("Created By Davenchy", this.parent.color.Green, "font-weight: 700;");
-            this.parent.Create.HLine();
-            this.parent.Create.ELine();
+        about:function(extra) {
+            this.terminal.create.ELine();
+            this.terminal.create.HLine();
+            this.terminal.create.Line("Javascript Terminal", this.terminal.color.Green, "font-weight: 700;");
+            this.terminal.create.Line("Version 3.0", this.terminal.color.Green, "font-weight: 700;");
+            this.terminal.create.Line("Created By Davenchy", this.terminal.color.Green, "font-weight: 700;");
+            this.terminal.create.HLine();
+            this.terminal.create.ELine();
         }
     };
 }
 
-//  Set InputBox
-Terminal.prototype.SetInputBox = function() { this.inputBox = $("<input type='text' class='InputBox'>"); }
+//  Init
+Terminal.prototype.Init = function() {
+    this.inputBox = document.createElement("input");
+    this.inputBox.setAttribute("class", "InputBox");
+    this.inputBox.setAttribute("id", "InputBox");
+    var terminal = this;
 
-//  Reset InputBox
-Terminal.prototype.RefreshInputBox = function() {
-    this.view.append(this.inputBox);
-    this.inputBox.val("");
+    document.onkeydown = function(e, t = terminal) {
+        terminal.OnKeyDown(e, t);
+    }
+
+    this.DrawInputBox();
+}
+
+//  Draw InputBox
+Terminal.prototype.DrawInputBox = function() {
+    var i = document.getElementById("InputBox");
+    if (i != null) {
+        i.remove();
+    }
+
+    this.view.appendChild(this.inputBox);
+    this.inputBox.value = "";
     this.inputBox.focus();
 }
 
 //  Append html code to Terminal
-Terminal.prototype.Draw = function(element) {
-    var obj = $(element);
-    this.view.append(obj);
-    this.RefreshInputBox();
-    return obj;
+Terminal.prototype.Draw = function(html) {
+    this.view.innerHTML += html;
+    var nodes = this.view.childNodes;
+    var node = nodes[nodes.length - 1];
+    this.DrawInputBox();
+    return node;
 }
 
+var test = undefined;
+
 //  On Key Down Event Method
-Terminal.prototype.OnKeyDown = function(e) {
-    if (document.activeElement != this.inputBox[0]) {
-        if (this.keys[e.keyCode] !== "f5" && this.keys[e.keyCode] !== "f12")
+Terminal.prototype.OnKeyDown = function(e, terminal) {
+    test = terminal;
+    if (document.activeElement != terminal.inputBox) {
+        if (terminal.keys[e.keyCode] !== "f5" && terminal.keys[e.keyCode] !== "f12")
         {
             e.preventDefault();
-            this.inputBox.focus();
+            terminal.inputBox.focus();
         }
     } else {
-        if (this.keys[e.keyCode] === "enter") {
-            this.OnInputEvent();
+        if (terminal.keys[e.keyCode] === "enter") {
+            terminal.OnInputEvent();
         }
-        if (this.keys[e.keyCode] === "up") {
+        if (terminal.keys[e.keyCode] === "up") {
             e.preventDefault();
-            if (this.historyIndex <= 0) { this.historyIndex++; }
-            this.historyIndex--;
-            this.inputBox.val(this.history[this.historyIndex]);
+            if (terminal.historyIndex <= 0) { terminal.historyIndex++; }
+            terminal.historyIndex--;
+            terminal.inputBox.value = terminal.history[terminal.historyIndex];
         }
-        if (this.keys[e.keyCode] === "down") {
+        if (terminal.keys[e.keyCode] === "down") {
             e.preventDefault();
-            if (this.historyIndex >= this.history.length-1) { this.historyIndex--; }
-            this.historyIndex++;
-            this.inputBox.val(this.history[this.historyIndex]);
+            if (terminal.historyIndex >= terminal.history.length-1) { terminal.historyIndex--; }
+            terminal.historyIndex++;
+            terminal.inputBox.value = terminal.history[terminal.historyIndex];
         }
     }
 }
 
 //  On Input Event Method
 Terminal.prototype.OnInputEvent = function() {
-    var string = this.inputBox.val();
+    var string = this.inputBox.value;
     if (string !== "") { 
         for(var i = 0; i < this.history.length; i++) {
             if (this.history[i] === string) {
@@ -131,7 +150,7 @@ Terminal.prototype.OnInputEvent = function() {
             this.history.push(string);
         }
 
-        this.Create.Line(string);
+        this.create.Line(string);
         this.Compilor(string);
     }
     this.historyIndex = this.history.length;
@@ -140,12 +159,12 @@ Terminal.prototype.OnInputEvent = function() {
 //  Method to check called codes from the Terminal
 Terminal.prototype.Compilor = function(code) {
     var cmd = code.split(" ")[0];
-    var pars = "";
+    var extra = "";
     if (code.indexOf(cmd + " ") != -1) { 
-        pars = code.replace(cmd + " ", "");
+        extra = code.replace(cmd + " ", "");
     }
-    try { this.framework[cmd](pars); }
-    catch (e) { this.Create.Line(e, this.color.Red, "font-weight: 700;"); }
+    try { this.framework[cmd](extra); }
+    catch (e) { this.create.Line(e, this.color.Red, "font-weight: 700;"); }
 }
 
 //  Split Args by splitter and return array
