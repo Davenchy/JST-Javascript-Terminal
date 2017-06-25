@@ -21,32 +21,44 @@
 
     //  Terminal.create.Line(message, color, style);
 
-    terminal.create.Line("Try 'MyMethod' The Created Method", terminal.color.Green, "font-size: 20px; font-weight: 700;");
-    terminal.create.Line("Try 'about', To show some information", terminal.color.Orange, "font-size: 20px; font-weight: 700;");
-    terminal.create.Line("Try 'Documentation', For Help!", terminal.color.Red, "font-size: 20px; font-weight: 700;");
-    terminal.create.Line("Try 'clear', To clear the terminal screen", terminal.color.LightBlue, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try 'MyMethod()' The Created Method", Color.Red, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try 'terminal.version', To show Terminal Version", Color.Orange, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try 'terminal.about', To show some information", Color.Yellow, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try '5 + 2 - 3 * 6'", Color.Green, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try 'var x = 5;'", Color.LightGreen, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try 'x += 3;'", Color.Blue, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try 'log(x, Color.Pink)'", Color.LightBlue, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try 'Documentation()', For Help!", Color.Teal, "font-size: 20px; font-weight: 700;");
+    terminal.create.Line("Try 'clear()', To clear the terminal view", Color.Purple, "font-size: 20px; font-weight: 700;");
 
 
     terminal.create.HLine();   //  Horizontal Line, Like <hr> tag.
     terminal.create.ELine();   //  Empity Line
 
-    //  Create New Method (Append Input)
-    //  Add New Method To The Framework Array
-    terminal.framework["MyMethod"] = function(input) {
-
-        //  Terminal.Draw(HTML Code);   To Append HTML Element To The Terminal
+    //  Create New Method
+    function MyMethod() {
+        //  Terminal.Draw(HTML Code);   To Append HTML Element To The Lines Array
         terminal.Draw("<input type='button' value='press me!' onclick='ShowAlert();'>");
 
     }
-    function ShowAlert() { 
-        terminal.create.Line("Alert!", terminal.color.Orange);
+    function ShowAlert() {
+        terminal.create.Line("Alert!", Color.Orange);
     }
 
 
     //  Documentation Command!
-    terminal.framework["Documentation"] = function(input) {
+    function Documentation() {
         terminal.Draw("<a href='Documentation.html' style='font-size: 30px; font-weight: 900; color: #4CAF50;'>Go To The Documentation</a>");
     }
 
-    // For more check 'Documentation.html' File
+    //  Now Add All The Lines From The Terminal Lines Array
+    //  To The Terminal View
+
+    //  First Clear The Terminal View
+    //  Note: Terminal.Clear() Method, Remove InputBox Object Too!
+    terminal.Clear();
+    //  Then Update View And Add The InputBox Object
+    terminal.Update();
+
+    // For more check 'documentation.html' File
 </script>

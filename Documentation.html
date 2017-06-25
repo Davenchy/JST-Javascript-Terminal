@@ -32,6 +32,18 @@
             .Blue { color: #2196F3; }
             .Orange { color: #FF9800; }
             .Green { color: #4CAF50; }
+
+            .Note, .Warn, .Error, .Important {
+                color: #f1f1f1;
+                padding: 16px;
+                margin: 10px;
+                border-radius: 5px;
+                text-align: center;
+            }
+            .Note { background-color: #2196F3; }
+            .Warn { background-color: #FF9800; }
+            .Important { background-color: #4CAF50; }
+            .Error { background-color: #F44336; }
         </style>
     </head>
     <body>
@@ -39,39 +51,42 @@
         <hr>
         <center style="font-size: 25px; font-weight: bold;">
             Javascript Terminal (JST)<br>
-            Version: 3.0<br>
+            Version: 4.0<br>
             Created By Davenchy
         </center>
         <hr>
         <ul>
-            <li><p><span class="Red">Terminal( ID )</span> (The Terminal Object) <a href="#Terminal" class="Green">More</a><p>
+            <li><p><span class="Red">Terminal(Id) : Object</span> (The Terminal Object) <a href="#Terminal" class="Green">More</a><p>
                 <ul>
-                    <li><p><span class="Blue">view</span> ( The Terminal DOM Element )</p></li>
-                    <li><p><span class="Blue">inputBox</span> ( The InputBox DOM Element )</p></li>
-                    <li><p><span class="Blue">color</span> ( Group Of Material CSS Colors ) <a href="#Colors" class="Green">More</a></p></li>
-                    <li><p><span class="Blue">framework</span> ( Object Contains Methods That Can Call As Commands From The Terminal ) <a href="#Framework" class="Green">More</a></li>
-                    <li><p><span class="Blue">create</span> ( Object Contains Methods To Create And Draw Elements In The Terminal ) <a href="#Create" class="Green">More</a></li>
-                    <li><p><span class="Red">Draw (html)</span> ( Method To Draw HTML Elements In The Terminal, Return HTML DOM Element ) <a href="#Draw" class="Green">More</a><p></li>
-                    <li><p><span class="Red">GetArgs (args, splitter)</span> ( That Method Split Args To Array Of Data ) <a href="#GetArgs" class="Green">More</a><p></li>
+                    <li><p><span class="Blue">view : DOM</span> ( The Terminal DOM Element )</p></li>
+                    <li><p><span class="Blue">inputBox : DOM</span> ( The InputBox DOM Element )</p></li>
+                    <li><p><span class="Blue">version : String</span> ( The Version Of The Terminal Script )</p></li>
+                    <li><p><span class="Blue">about : String</span> ( About The Script )</p></li>
+                    <li><p><span class="Blue">echo : Boolean</span> ( To Echo String If True )</p></li>
+                    <li><p><span class="Blue">history : Array</span> ( Array Contains Each Input )</p></li>
+                    <li><p><span class="Blue">MainTerminal : Object</span> ( The Last Created Terminal Object ) <a href="#MainTerminal" class="Green">More</a></p></li>
+                    <li><p><span class="Blue">lines : Array</span> ( Array Of All The DOM Elements Inside The Terminal View ) <a href="#Lines" class="Green">More</a></p></li>
+                    <li><p><span class="Blue">create : Object</span> ( Object Contains Methods To Create And Draw Elements In The Terminal View ) <a href="#Create" class="Green">More</a></li>
+                    <li><p><span class="Red">Draw (html) : Method</span> ( Method To Draw HTML Elements In The Terminal View, Return Index Of The HTML DOM Element Inside The Lines Array ) <a href="#Draw" class="Green">More</a><p></li>
+                    <li><p><span class="Red">Update () : Method</span> ( Method To Append Each Line In The Lines Array To The Terminal View. )</p></li>
+                    <li><p><span class="Red">Clear () : Method</span> ( Method To Clear Terminal View, Important This Method Will Remove InputBox Too! )</p></li>
+                    <li><p><span class="Red">Reset () : Method</span> ( Method To Clear And Rebuild The Terminal View )</p></li>
                 </ul>
             </li>
+            <li><p><span class="Blue">Color : Object</span> ( Group Of Material CSS Colors Strings ) <a href="#Colors" class="Green">More</a></p></li>
+            <li><a href="#Tips" class="Orange">Some Tips And Tools</a>
             <li><a href="#Example" class="Green">Example</a>
         </ul>
         <hr>
-        <h1 id="Terminal" class="Red">Terminal ( ID )</h1>
+        <h1 id="Terminal" class="Red">Terminal (Id) : Object</h1>
         <p>
             The Terminal Object<br><br>
-            Terminal(id)<br><br>
-            HTML Code:<br>
+            
+            How To Use:<br>
 
-            <textarea class="Code" style="height: 100px;" readonly>
+            <textarea class="Code" style="height: 200px;" readonly>
                 
     <div class="Terminal" id="Terminal1"></div>
-
-            </textarea>
-
-            Javascript Code:
-            <textarea class="Code" style="height: 120px;" readonly>
 
     <script>
         var terminal = new Terminal("Terminal1");
@@ -80,53 +95,31 @@
             </p>
         <hr>
         
-        <h1 id="Colors" class="Blue">color</h1>
+        <h1 id="Colors" class="Blue">Color : Object</h1>
         <p>
-            Terminal.color{}<br><br>
-            Object Contains A Group Of Colors<br><br>
+            Color {}<br><br>
+            <p class="Note"> Object Contains A Group Of Material Colors</p>
             <h2>Colors:</h2>
-            <p style="color: #F44336;">Terminal.color.Red</p>
-            <p style="color: #E91E63;">Terminal.color.Pink</p>
-            <p style="color: #9C27B0;">Terminal.color.Purple</p>
-            <p style="color: #3F51B5;">Terminal.color.Indigo</p>
-            <p style="color: #2196F3;">Terminal.color.Blue</p>
-            <p style="color: #03A9F4;">Terminal.color.LightBlue</p>
-            <p style="color: #009688;">Terminal.color.Teal</p>
-            <p style="color: #4CAF50;">Terminal.color.Green</p>
-            <p style="color: #8BC34A;">Terminal.color.LightGreen</p>
-            <p style="color: #CDDC39;">Terminal.color.Lime</p>
-            <p style="color: #FFEB3B;">Terminal.color.Yellow</p>
-            <p style="color: #FF9800;">Terminal.color.Orange</p>
-            <p style="color: #E0E0E0;">Terminal.color.White</p>
+            <p style="color: #F44336;">Color.Red</p>
+            <p style="color: #E91E63;">Color.Pink</p>
+            <p style="color: #9C27B0;">Color.Purple</p>
+            <p style="color: #3F51B5;">Color.Indigo</p>
+            <p style="color: #2196F3;">Color.Blue</p>
+            <p style="color: #03A9F4;">Color.LightBlue</p>
+            <p style="color: #009688;">Color.Teal</p>
+            <p style="color: #4CAF50;">Color.Green</p>
+            <p style="color: #8BC34A;">Color.LightGreen</p>
+            <p style="color: #CDDC39;">Color.Lime</p>
+            <p style="color: #FFEB3B;">Color.Yellow</p>
+            <p style="color: #FF9800;">Color.Orange</p>
+            <p style="color: #E0E0E0;">Color.White</p>
         </p> 
         <hr>
 
-        <h1 id="Framework" class="Blue">framework</h1>
+        <h1 id="Create" class="Blue">create : Object</h1>
         <p>
-            Terminal.framework{}<br><br>
-            Object Contains Methods Can Be Called As Commands From The Terminal.
-            <h2>Built In Commands:</h2>
-            <p class="Blue">Terminal.framework.terminal (The Parent Terminal)</p>
-            <p class="Red">Terminal.framework.clear( extra ) (Clear The Terminal Screen)</p>
-            <p class="Red">Terminal.framework.about( extra ) (Print Some Information About Terminal)</p>
-            <br><br>
-            <p>extra: Is An Array Contains The Args.</p>
-            <h2>Create New Command</h2>
-            <textarea class="Code" style="height: 150px;" readonly>
-                var terminal = new Terminal("Terminal1");
-
-                terminal.framework["MyMethodName"] = function(extra) {
-                    //  Do Something....
-                };
-            </textarea>
-            
-        </p> 
-        <hr>
-
-        <h1 id="Create" class="Blue">create</h1>
-        <p>
-            Terminal.create{}<br><br>
-            Object Contains Methods To Create And Draw Elements In The Terminal.
+            Terminal.create {}<br><br>
+            <p class="Note"> Object Contains Methods To Create New Terminal View Lines, Inside The <a class="Red" href="#Lines">Lines Array</a></p>
 
             <h2>Methods:</h2>
             <p class="Blue">Terminal.create.terminal (The Parent Terminal)</p>
@@ -134,9 +127,11 @@
             <p class="Red">Terminal.create.ELine(style) (Print New Empity Line To The Terminal)</p>
             <p class="Red">Terminal.create.HLine(style) (Print New Horizontal Line To The Terminal, The Same As [hr] Tag)</p>
             <br>
-            <p>text: Is the message or the string to display.</p>
-            <p>color: Is the css color of the text.</p>
-            <p>style: Is the css code to style the text.</p>
+            <div class="Warn">
+                <p>text: Is the message or the string to display.</p>
+                <p>color: Is the css color of the text.</p>
+                <p>style: Is the css code to style the text.</p>
+            </div>
 
             <h2>Example</h2>
             <textarea class="Code" style="height: 300px;" readonly>
@@ -145,9 +140,9 @@
                 terminal.create.HLine();
                 terminal.create.Line("Hello World!");
                 terminal.create.ELine();
-                terminal.create.Line("Hello World!", terminal.color.Green);
+                terminal.create.Line("Hello World!", Color.Green);
                 terminal.create.ELine();
-                terminal.create.Line("Hello World!", "#E91E63", "font-size: 25px; font-weight: bold;");
+                terminal.create.Line("Hello World!", Color.Pink, "font-size: 25px; font-weight: bold;");
                 terminal.create.HLine();
 
                 // Default color Is White.
@@ -157,12 +152,37 @@
         </p>
         <hr>
 
-        <h1 id="Draw" class="Red">Draw ( html )</h1>
+        <h1 id="Lines" class="Blue">Lines : Array</h1>
         <p>
-            Terminal.Draw(html)<br><br>
-            Method To Append HTML Code To The Terminal
+            Terminal.lines<br><br>
+            <p class="Note"> Array Contains Terminal View DOM Elements. </p>
             <br><br>
-            And Return HTML DOM Element
+            <h2 class="Important">Add New Element With Draw Method <a class="Red" href="#Draw">More</a></h2>
+            <textarea class="Code" style="height: 50px;" readonly>
+                terminal.Draw("<p style='font-size: 20px; color: red;'>Hello World!</p>");
+            </textarea>
+            <h2 class="Important">Add New Element With Create Method <a class="Red" href="#Create">More</a></h2>
+            <textarea class="Code" style="height: 50px;" readonly>
+                terminal.create.Line("Hello World!", Color.Red, "font-style: 20px");
+            </textarea>
+            <h2 class="Important">Add New Element With Log Tool <a class="Red" href="#Tips">More</a></h2>
+            <textarea class="Code" style="height: 70px;" readonly>
+                MainTerminal = terminal;
+                log("Hello World!", Color.Red, "font-style: 20px");
+            </textarea>
+        </p>
+
+        <hr>
+
+        <h1 id="Draw" class="Red">Draw (html) : Method</h1>
+        <p>
+            Terminal.Draw (html)<br><br>
+            <p class="Note">
+                Method To Append HTML Code To The Lines Array, 
+                <a href="#Lines" class="Red">Terminal Lines Array?</a>
+                <br>
+                And Return Index Of The HTML DOM Element Inside The Lines Array
+            </p>
             <br><br>
             <h2>Example</h2>
             <textarea class="Code" style="height: 150px;" readonly>
@@ -177,155 +197,191 @@
 
         <hr>
 
-        <h1 id="GetArgs" class="Red">GetArgs (args, splitter)</h1>
-        <p>
-            Terminal.GetArgs(args, splitter)<br><br>
-            Method To split string. <br>
-            <h2>Example</h2>
-            <textarea class="Code" style="height: 210px;" readonly>
+        <h1 id="MainTerminal" class="Blue">MainTerminal : Object</h1>
+
+        <p class="Note">MainTerminal is just a variable used by the <a class="Red" href="#Tips">Terminal Tools</a> To Select 
+        And Control The Terminal Objects<br>
+        So, Create One Method For All The Terminals Objects
+        </p>
+
+        <p class="Note">Tools Methods Can Called From The Terminal UI</p>
+        <p class="Important">So Tools Methods Make It Easy On The Users</p><br>
+        <p class="Error">terminal.create.Line('Hello World!', Color.Pink, 'font-style: 25px; font-weight:bold;') [Terminal Statment]</p>
+        <p class="Important">log('Hello World!', Color.Pink, 'font-style: 25px; font-weight:bold;') [Shortcut Statment]</p>
+
+        <h2>Example</h2>
+            <textarea class="Code" style="height: 400px;" readonly>
                 var terminal = new Terminal("Terminal1");
 
-                var colors = "Red Green Orange";
-                var colorsArray = terminal.GetArgs(colors, " ");
+                //  Very Important, Because may the page contains more than one Terminal Object
+                //  So MainTerminal used to select Terminal Object
+                MainTerminal = terminal;
 
-                for(var i = 0; i < colorsArray.Length; i++) {
-                    terminal.create.Line("Hello World!", terminal.color[ colorsArray[i] ]);
+                //  Create New Terminal Tool
+                function log(text, color, style) {
+                    MainTerminal.create.Line(text, color, style);
+                }
+
+                //  Create New Terminal Tool
+                function clear() {
+                    MainTerminal.Reset();
                 }
             </textarea>
-        </p>
+
         <hr>
 
-        <h1 id="Example" class="Blue">Example</h1>
+        <h1 id="Tips" class="Orange">Tips And Tools</h1>
+
+        <p class="Important">You Can Use Some Tools Like:</p>
+        <br>
+        <p class="Red">log(text, color, style) ( Rather Terminal.create.Line(...) ) <a href="#Create" class="Green">Help</a></p>
+        <p class="Red">clear() ( To Clear All Elements In The Terminal View )</p>
+        <br>
+
+        <p class="Warn">
+            Very Important: Before Use Any Of The Above Tools You Must Set MainTerminal To The Current Terminal. <a href="#MainTerminal" class="Red">More</a>
+        </p>
+
+        <br><br>
+
+        <h1 class="Important">Features</h1>
+        <h1 class="Note">
+            <p>Use Up And Down Arrows To Explore Inputs History</p>
+            <p>You Can Write JavaScript Code As Input</p>
+            <p>You Can Use Tools Like (log() and clear()) As Shortcuts</p>
+            <p>And More....</p>
+        </h1>
+
+
+        <hr>
+
+        <h1 id="Example" class="Orange">Example</h1>
         <p>
 
-            <h2>You Will Learn:</h2>
-            <p>How To Create Terminal Object</p>
-            <p>Create Simple Framework Command Method [Calc]</p>
-            <p>How To Use GetArgs In Framework Command Method</p>
-            <br><br><br><br>
-            <h2>Create div Tag in html page</h2>
+            <h2>You Will Learn, How To Use JST Lib</h2>
+            <br><br>
+            <h2 class="Note">Create div Tag in html page</h2>
             <textarea class="Code" style="height: 50px;" readonly>
                 <div class="Terminal" id="Terminal1"></div>
             </textarea>
 
-            <h2>Create Terminal Object In Javascript</h2>
+            <h2 class="Note">Create Terminal Object In Javascript</h2>
             <textarea class="Code" style="height: 100px;" readonly>
                 <script>
                     var terminal = new Terminal("Terminal1");
                 </script>
             </textarea>
 
-            <h2>Create New Framework Method Called "Calc"</h2>
-            <textarea class="Code" style="height: 200px;" readonly>
-                <script>
-                    
-                    terminal.framework["Calc"] = function(extra) {
-
-                    }
-
-                </script>
+            <h2 class="Note">Create Empty Array Called "Users"</h2>
+            <textarea class="Code" style="height: 50px;" readonly>
+                    var Users = [];
             </textarea>
 
-            <h2>Add Vars</h2>
-            <textarea class="Code" style="height: 400px;" readonly>
-                <script>
-                    
-                    terminal.framework["Calc"] = function(extra) {
-
-                        var inputs = terminal.GetArgs(extra, " "); // Split The Args.
-                        var a = parseInt(extra[0], 0); //   First Number
-                        var b = parseInt(extra[2], 0); //   Second Number
-                        var o = extra[1]; //   Operator
-                        var r = 0;         //   Result
-                        var error = false;
-
-                    }
-
-                </script>
+            <h2 class="Note">Some Variables For Help</h2>
+            <textarea class="Code" style="height: 100px;" readonly>
+                    var Warn = Color.Orange;
+                    var Note = Color.Green;
+                    var Style = "font-size: 20px; font-weight: bold;";
             </textarea>
 
-            <h2>Check Operator And Calculate The Two Numbers, Then Check Errors</h2>
+            <h2 class="Note">Now Let`s Create 'AddUser' Method</h2>
             <textarea class="Code" style="height: 450px;" readonly>
-
-                if (o == "+") { r = a + b; }
-                else if (o == "-") { r = a - b; }
-                else if (o == "*") { r = a * b; }
-                else if (o == "/") {
-                    if (b != 0) {
-                        r = a / b; 
-                    } 
-                    else { 
-                        r = "Math Error!";
-                        error = true;
-                    }
-                }
-                else if (o == undefined) { r = "Calc Command Need 3 Ars, e.g. Calc 5 + 3"; error = true; }
-                else { r = "Wrong Operator '" + o + "'!"; error = true; }
-
-            </textarea>
-
-            <h2>Return Error If Exist Or Return The Result</h2>
-            <textarea class="Code" style="height: 200px;" readonly>
-
-                if (error) {
-                    terminal.create.Line(r, terminal.color.Red);
-                } else {
-                    terminal.create.Line("The Result is " + r, terminal.color.Green);
-                }
-
-            </textarea>
-
-            <h3>Done!</h3>
-            <h2>Now The Full Code</h2>
-
-            <textarea class="Code" style="height: 1100px;" readonly>
-
-                <div class="Terminal"></div>
-
-
-                <script>
-
-                    var terminal = new Terminal("Terminal1");
-
-
-                    terminal.framework["Calc"] = function(extra) {
-                        var inputs = terminal.GetArgs(extra, " "); // Split The Args.
-                        var a = parseInt(extra[0], 0); //   First Number
-                        var b = parseInt(extra[2], 0); //   Second Number
-                        var o = extra[1]; //   Operator
-                        var r = 0;         //   Result
-                        var error = false;
+                    function AddUser(name) {
                         
-                        if (o == "+") { r = a + b; }
-                        else if (o == "-") { r = a - b; }
-                        else if (o == "*") { r = a * b; }
-                        else if (o == "/") {
-                            if (b != 0) {
-                                r = a / b; 
-                            } 
-                            else { 
-                                r = "Math Error!";
-                                error = true;
+                        for(i in Users) {
+
+                            var user = Users[i];
+
+                            if (user == name) {
+                                log("This Name Is Already Exist!", Warn, Style);
+                                return;
                             }
+
                         }
-                        else if (o == undefined) { r = "Calc Command Need 3 Ars, e.g. Calc 5 + 3"; error = true; }
-                        else { r = "Wrong Operator '" + o + "'!"; error = true; }
-                        
-                        if (error) {
-                            terminal.create.Line(r, terminal.color.Red);
-                        } else {
-                            terminal.create.Line("The Result is " + r, terminal.color.Green);
-                        }
+
+                        Users.push(name);
+
+                        log("Name Was Added!", Note, Style);
+
                     }
-
-                </script>
-
             </textarea>
+
+            <h2 class="Note">Now Let`s Create 'RemoveUser' Method</h2>
+            <textarea class="Code" style="height: 450px;" readonly>
+                    function RemoveUser(name) {
+                        
+                        for(i in Users) {
+
+                            var user = Users[i];
+
+                            if (user == name) {
+
+                                Users.splice(i, 1);
+
+                                log("Name Was Removed!", Note, Style);
+                                return;
+                            }
+
+                        }
+
+                        log("Name Is Not Exist!", Warn, Style);
+
+                    }
+            </textarea>
+
+            <h2 class="Note">Now Let`s Create 'IsUserExist' Method</h2>
+            <textarea class="Code" style="height: 450px;" readonly>
+                    function IsUserExist(name) {
+                        
+                        for(i in Users) {
+
+                            var user = Users[i];
+
+                            if (user == name) {
+                                log("User Is Exist!", Note, Style);
+                                return;
+                            }
+
+                        }
+
+                        log("User Is Not Exist!", Warn, Style);
+
+                    }
+            </textarea>
+
+            <h2 class="Note">Now Let`s Create 'UpdateUser' Method</h2>
+            <textarea class="Code" style="height: 450px;" readonly>
+                    function UpdateUser(name, newName) {
+                        
+                        for(i in Users) {
+
+                            var user = Users[i];
+
+                            if (user == name) {
+
+                                Users[i] = newName;
+
+                                log("Name Was Updated!", Note, Style);
+                                return;
+                            }
+
+                        }
+
+                        log("Name Is Not Exist!", Warn, Style);
+
+                    }
+            </textarea>
+
+            <a href="tutorial.html" class="Important" style="text-decoration: none; margin: 20px; display: block;">View Demo</a>
 
         </p>
 
         <hr>
-        <h1>Thank You!</h1>
+        <h1 style="text-align: center;">
+            <div class="Red">Created By Davenchy with some &lt/&gt and some ♥!</div>
+            <br>
+            Thank You!
+        </h1>
         <br>
     </body>
 </html>

@@ -1,0 +1,113 @@
+<html>
+
+<head>
+    <title>JST - Javascript Terminal</title>
+    <script src="Terminal.js"></script>
+    <link href="Terminal.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Create div Tag in html page -->
+    <div class="Terminal" id="Terminal1">
+</body>
+
+</html>
+
+<script>
+    //  Create Terminal Object In Javascript
+    var terminal = new Terminal("Terminal1");
+
+    //  Create Empty Array Called "Users"
+    var Users = [];
+
+    //  Some Variables For Help
+    var Warn = Color.Orange;
+    var Note = Color.Green;
+    var Style = "font-size: 20px; font-weight: bold;";
+
+    //  Now Let`s Create 'AddUser' Method
+    function AddUser(name) {
+
+        for (i in Users) {
+
+            var user = Users[i];
+
+            if (user == name) {
+                log("This Name Is Already Exist!", Warn, Style);
+                return;
+            }
+
+        }
+
+        Users.push(name);
+
+        log("Name Was Added!", Note, Style);
+
+    }
+
+    //  Now Let`s Create 'RemoveUser' Method
+    function RemoveUser(name) {
+
+        for (i in Users) {
+
+            var user = Users[i];
+
+            if (user == name) {
+
+                Users.splice(i, 1);
+
+                log("Name Was Removed!", Note, Style);
+                return;
+            }
+
+        }
+
+        log("Name Is Not Exist!", Warn, Style);
+
+    }
+
+    //  Now Let`s Create 'IsUserExist' Method
+    function IsUserExist(name) {
+
+        for (i in Users) {
+
+            var user = Users[i];
+
+            if (user == name) {
+                log("User Is Exist!", Note, Style);
+                return;
+            }
+
+        }
+
+        log("User Is Not Exist!", Warn, Style);
+
+    }
+
+    //  Now Let`s Create 'UpdateUser' Method
+    function UpdateUser(name, newName) {
+
+        for (i in Users) {
+
+            var user = Users[i];
+
+            if (user == name) {
+
+                Users[i] = newName;
+
+                log("Name Was Updated!", Note, Style);
+                return;
+            }
+
+        }
+
+        log("Name Is Not Exist!", Warn, Style);
+
+    }
+
+    //  Created By ♥
+
+
+    // For more check 'documentation.html' File
+
+</script>
