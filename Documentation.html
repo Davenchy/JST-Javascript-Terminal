@@ -51,7 +51,7 @@
         <hr>
         <center style="font-size: 25px; font-weight: bold;">
             Javascript Terminal (JST)<br>
-            Version: 4.0<br>
+            Version: 4.5<br>
             Created By Davenchy
         </center>
         <hr>
@@ -62,11 +62,13 @@
                     <li><p><span class="Blue">inputBox : DOM</span> ( The InputBox DOM Element )</p></li>
                     <li><p><span class="Blue">version : String</span> ( The Version Of The Terminal Script )</p></li>
                     <li><p><span class="Blue">about : String</span> ( About The Script )</p></li>
+                    <li><p><span class="Blue">placeholder : String</span> ( Placeholder For The InputBox )</p></li>
                     <li><p><span class="Blue">echo : Boolean</span> ( To Echo String If True )</p></li>
                     <li><p><span class="Blue">history : Array</span> ( Array Contains Each Input )</p></li>
                     <li><p><span class="Blue">MainTerminal : Object</span> ( The Last Created Terminal Object ) <a href="#MainTerminal" class="Green">More</a></p></li>
                     <li><p><span class="Blue">lines : Array</span> ( Array Of All The DOM Elements Inside The Terminal View ) <a href="#Lines" class="Green">More</a></p></li>
                     <li><p><span class="Blue">create : Object</span> ( Object Contains Methods To Create And Draw Elements In The Terminal View ) <a href="#Create" class="Green">More</a></li>
+                    <li><p><span class="Blue">helpMenu : Object</span> ( Object Control The Help Menu ) <a href="#HelpMenu" class="Green">More</a></li>
                     <li><p><span class="Red">Draw (html) : Method</span> ( Method To Draw HTML Elements In The Terminal View, Return Index Of The HTML DOM Element Inside The Lines Array ) <a href="#Draw" class="Green">More</a><p></li>
                     <li><p><span class="Red">Update () : Method</span> ( Method To Append Each Line In The Lines Array To The Terminal View. )</p></li>
                     <li><p><span class="Red">Clear () : Method</span> ( Method To Clear Terminal View, Important This Method Will Remove InputBox Too! )</p></li>
@@ -147,6 +149,36 @@
 
                 // Default color Is White.
                 // Default style Is Empity String.
+            </textarea>
+            
+        </p>
+        <hr>
+
+        <h1 id="HelpMenu" class="Blue">helpMenu : Object</h1>
+        <p>
+            Terminal.helpMenu {}<br><br>
+            <p class="Note"> Object Control The Help Menu</p>
+
+            <h2>Contains:</h2>
+            <p class="Blue">Terminal.helpMenu.terminal (The Parent Terminal)</p>
+            <p class="Blue">Terminal.helpMenu.datalist (The InputBox Data List DOM Element)</p>
+            <p class="Blue">Terminal.helpMenu.list (Array Contains Help Lines)</p>
+            <p class="Red">Terminal.helpMenu.Build() (Method To Build Or Rebuild The Data List DOM Element, To Update The List)</p>
+            <p class="Red">Terminal.helpMenu.Add(line : String, note : String) (Method To Add Line To The List Array)</p>
+            <br>
+            <h1 class="Warn">
+                Call Build() Method After Add New Lines To The List Array
+            </h1>
+
+            <h2>Example</h2>
+            <textarea class="Code" style="height: 200px;" readonly>
+                var terminal = new Terminal("Terminal1");
+
+                terminal.helpMenu.Add("Line A", "Line Number 1");
+                terminal.helpMenu.Add("Line B", "Line Number 2");
+                terminal.helpMenu.Add("Line C", "Line Number 3");
+
+                terminal.helpMenu.Build();
             </textarea>
             
         </p>
@@ -249,6 +281,8 @@
             <p>Use Up And Down Arrows To Explore Inputs History</p>
             <p>You Can Write JavaScript Code As Input</p>
             <p>You Can Use Tools Like (log() and clear()) As Shortcuts</p>
+            <p>InputBox Placeholder</p>
+            <p>Help And Commands Suggestion</p>
             <p>And More....</p>
         </h1>
 
@@ -257,9 +291,6 @@
 
         <h1 id="Example" class="Orange">Example</h1>
         <p>
-
-            <h2>You Will Learn, How To Use JST Lib</h2>
-            <br><br>
             <h2 class="Note">Create div Tag in html page</h2>
             <textarea class="Code" style="height: 50px;" readonly>
                 <div class="Terminal" id="Terminal1"></div>
@@ -370,6 +401,17 @@
                         log("Name Is Not Exist!", Warn, Style);
 
                     }
+            </textarea>
+
+            <h2 class="Note">Now Setup The Help Menu</h2>
+            <textarea class="Code" style="height: 200px;" readonly>
+                    terminal.helpMenu.Add("Users", "Users List");
+                    terminal.helpMenu.Add("AddUser(\"\")", "Add New User");
+                    terminal.helpMenu.Add("RemoveUser(\"\")", "Remove User");
+                    terminal.helpMenu.Add("UpdateUser(\"\", \"\")", "Update User, The Old Name Is Needed!");
+                    terminal.helpMenu.Add("IsUserExistUser(\"\")", "Check If The User Is Exist");
+
+                    terminal.helpMenu.Build();
             </textarea>
 
             <a href="tutorial.html" class="Important" style="text-decoration: none; margin: 20px; display: block;">View Demo</a>

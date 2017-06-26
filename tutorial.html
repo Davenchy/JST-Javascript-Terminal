@@ -105,9 +105,20 @@
 
     }
 
-    //  Created By ♥
+    //  Now Setup The Help Menu
+
+    //  Add Lines
+    terminal.helpMenu.Add("Users", "Users List");
+    terminal.helpMenu.Add("AddUser(\"\")", "Add New User");
+    terminal.helpMenu.Add("RemoveUser(\"\")", "Remove User");
+    terminal.helpMenu.Add("UpdateUser(\"\", \"\")", "Update User, The Old Name Is Needed!");
+    terminal.helpMenu.Add("IsUserExistUser(\"\")", "Check If The User Is Exist");
+
+    //  Build The Help Menu
+    terminal.helpMenu.Build();
 
 
+    //  Created By Davenchy with ♥ and some </>
     // For more check 'documentation.html' File
 
 </script>

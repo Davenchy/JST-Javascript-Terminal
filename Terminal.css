@@ -1,3 +1,4 @@
+/*Terminal*/
 .Terminal {
     background-color: #333;
     position: absolute;
@@ -11,12 +12,14 @@
     word-wrap: break-word;
 }
 
+/*Lines*/
 .Terminal .Line {
     margin: 0;
     color: #eee;
     font-size: 18px;
 }
 
+/*InputBox*/
 .Terminal .InputBox {
     border: none;
     margin-top: 10px;
@@ -26,3 +29,8 @@
     background-color: transparent;
     color: #eee;
 }
+
+/*InputBox Placeholder*/
+.Terminal ::-webkit-input-placeholder { color: #FF9800; }
+.Terminal ::-moz-placeholder { color: #FF9800; }
+.Terminal :-ms-input-placeholder { color: #FF9800; }

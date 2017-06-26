@@ -47,9 +47,7 @@
 
 
     //  Documentation Command!
-    function Documentation() {
-        terminal.Draw("<a href='Documentation.html' style='font-size: 30px; font-weight: 900; color: #4CAF50;'>Go To The Documentation</a>");
-    }
+    function Documentation() { document.location.href = "documentation.html"; }
 
     //  Now Add All The Lines From The Terminal Lines Array
     //  To The Terminal View
@@ -60,5 +58,20 @@
     //  Then Update View And Add The InputBox Object
     terminal.Update();
 
+    //  Setup The Help Menu
+    //  Add Lines
+    terminal.helpMenu.Add("Documentation()", "Show Link To The Documentation");
+    terminal.helpMenu.Add("MyMethod()");
+    terminal.helpMenu.Add("terminal.version", terminal.version);
+    terminal.helpMenu.Add("terminal.about", terminal.about);
+    terminal.helpMenu.Add("log(x, Color.Pink)");
+    terminal.helpMenu.Add("var x = 5;");
+    terminal.helpMenu.Add("x += 3;");
+    terminal.helpMenu.Add("5 + 2 - 3 * 6");
+
+    //  Build The Help Menu
+    terminal.helpMenu.Build();
+
+    // Created By Davenchy with ♥ and some </>
     // For more check 'documentation.html' File
 </script>

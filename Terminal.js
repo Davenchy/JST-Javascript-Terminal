@@ -2,7 +2,7 @@
  *
  * Javascript Terminal (JST)
  * Created By Davenchy And Some ♥
- * Tools Version 4.0
+ * Tools Version 4.5
  *
 */
 
@@ -29,9 +29,37 @@ function Terminal(id) {
     //  Init
     this.view = document.getElementById(id);
     this.inputBox;
+
+    // => Help Menu
+    this.helpMenu = {
+        terminal: this,
+        datalist: undefined,
+        list: [],
+        Build: function() {
+            if (this.datalist != null) { this.datalist.remove(); }
+
+            this.datalist = document.createElement("datalist");
+            this.datalist.setAttribute("id", "DataList");
+
+            for (i in this.list) {
+                var option = document.createElement("option");
+                option.setAttribute("value", this.list[i].code);
+                option.setAttribute("label", this.list[i].note);
+                this.datalist.innerHTML += option.outerHTML;
+            }
+
+            this.terminal.view.appendChild(this.datalist);
+        },
+        Add: function(code = "", note = "") {
+            if (code == "") { throw "HelpMenu Error: Empty Code"; }
+            this.list.push( { "code": code, "note": note } );
+        }
+    }
+
+    this.placeholder = "$";
     this.compilor = eval;
     this.type = Terminal;
-    this.version = "4.0";
+    this.version = "4.5";
     this.about = "Created By Davenchy With Some &lt/&gt And ♥";
     this.echo = false;
     this.Init();
@@ -68,6 +96,10 @@ Terminal.prototype.Init = function () {
 
     //  Setup Input Box
     this.DrawInputBox();
+
+    //  Setup Help Menu
+    this.helpMenu.Add("log(\"\");");
+    this.helpMenu.Add("clear();");
 }
 
 //  Draw InputBox
@@ -75,10 +107,13 @@ Terminal.prototype.DrawInputBox = function () {
     this.inputBox = document.createElement("input");
     this.inputBox.setAttribute("class", "InputBox");
     this.inputBox.setAttribute("id", "InputBox");
-
+    this.inputBox.setAttribute("list", "DataList");
+    this.inputBox.setAttribute("placeholder", this.placeholder);
     this.view.appendChild(this.inputBox);
     this.inputBox.value = "";
     this.inputBox.focus();
+
+    this.helpMenu.Build();
 }
 
 //  Append html code to Terminal
