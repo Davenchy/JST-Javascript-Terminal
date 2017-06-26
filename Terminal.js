@@ -181,6 +181,7 @@ Terminal.prototype.OnInputEvent = function () {
         }
         if (this.history[this.history.length - 1] !== string) {
             this.history.push(string);
+            this.helpMenu.Add(string, "Inputs History");
         }
 
         this.Compilor(string);
