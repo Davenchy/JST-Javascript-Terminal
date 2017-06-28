@@ -180,7 +180,7 @@ Terminal.prototype.OnInputEvent = function () {
             }
         }
         for (var i = 0; i < this.helpMenu.list.length; i++) {
-            if (this.helpMenu.list[i] === string) {
+            if (this.helpMenu.list[i].code === string) {
                 this.helpMenu.list.splice(i, 1);
             }
         }
