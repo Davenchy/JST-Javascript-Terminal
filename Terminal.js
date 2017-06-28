@@ -179,6 +179,11 @@ Terminal.prototype.OnInputEvent = function () {
                 this.history.splice(i, 1);
             }
         }
+        for (var i = 0; i < this.helpMenu.list.length; i++) {
+            if (this.helpMenu.list[i] === string) {
+                this.helpMenu.list.splice(i, 1);
+            }
+        }
         if (this.history[this.history.length - 1] !== string) {
             this.history.push(string);
             this.helpMenu.Add(string, "Inputs History");
